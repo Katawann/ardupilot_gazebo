@@ -9,6 +9,7 @@ project(ardupilot_sitl_gazebo)
 #######################
 
 find_package(gazebo REQUIRED)
+#c++11 flags are now required for all downstream software to compile against gazebo
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 if("${GAZEBO_VERSION}" VERSION_LESS "7.0")

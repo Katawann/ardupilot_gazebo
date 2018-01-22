@@ -152,10 +152,9 @@ struct fdmPacket
 
   /// \brief Battery Current.
   double battery_current = 0.0;
-
+*/
   /// \brief Model rangefinder value. Default to -1 to use sitl rangefinder.
   double rangefinder = -1.0;
-*/
 };
 
 /// \brief Control class
@@ -817,12 +816,13 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
              << "  found "  << " [" << gpsName << "].\n";
     }
   }
+*/
 
   // Get Rangefinder
-  // TODO add sonar
-    std::string rangefinderName;
+  std::string rangefinderName;
   getSdfParam<std::string>(_sdf, "rangefinderName", rangefinderName, "rangefinder_sensor");
   std::vector<std::string> rangefinderScopedName = getSensorScopedName(this->dataPtr->model, rangefinderName);
+
   if (rangefinderScopedName.size() > 1)
   {
     gzwarn << "[" << this->dataPtr->modelName << "] "
@@ -873,7 +873,7 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     if (!this->dataPtr->rangefinderSensor)
     {
       gzwarn << "[" << this->dataPtr->modelName << "] "
-             << "ranfinder [" << rangefinderName
+             << "rangefinder [" << rangefinderName
              << "] not found, skipping rangefinder support.\n" << "\n";
     }
     else
@@ -882,7 +882,7 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
              << "  found "  << " [" << rangefinderName << "].\n";
     }
   }
-*/
+
   // Controller time control.
   this->dataPtr->lastControllerUpdateTime = 0;
 
@@ -1290,20 +1290,20 @@ void ArduPilotPlugin::SendState() const
         pkt.longitude = this->dataPtr->gpsSensor->Longitude().Degree();
         pkt.latitude = this->dataPtr->gpsSensor->Latitude().Degree();
         pkt.altitude = this->dataPtr->gpsSensor->Altitude();
-    }
+    }*/
 
     // TODO : make generic enough to accept sonar/gpuray etc. too
     if (!this->dataPtr->rangefinderSensor)
     {
 
     } else {
-        // Rangefinder value can not be send as Inf to ardupilot
+        // Send rangefinder of index 0, or default value if inf (will use SITL laser)
         const double range = this->dataPtr->rangefinderSensor->Range(0);
-        pkt.rangefinder = std::isinf(range) ? 0.0 : range;
+        pkt.rangefinder = std::isinf(range) ? -1.0 : range;
     }
 
-  // airspeed :     wind = Vector3(environment.wind.x, environment.wind.y, environment.wind.z)
+   // airspeed :     wind = Vector3(environment.wind.x, environment.wind.y, environment.wind.z)
    // pkt.airspeed = (pkt.velocity - wind).length()
-*/
+
   this->dataPtr->socket_out.Send(&pkt, sizeof(pkt));
 }
