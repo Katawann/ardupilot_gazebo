@@ -7,12 +7,12 @@
           <geometry>
             <heightmap>
               <uri>model://agrofly1/materials/textures/rows.png</uri>
-              <size>129 129 1.8</size>
+              <size>117 117 1.8</size>
               <pos>0 0 0</pos>
             </heightmap>
           </geometry>
         </collision>
-        <visual name="visual_abcedf">
+        <visual name="visual_site1">
           <geometry>
             <heightmap>
               <use_terrain_paging>false</use_terrain_paging>
@@ -40,7 +40,7 @@
                 <fade_dist>0.8</fade_dist>
               </blend>
               <uri>model://agrofly1/materials/textures/rows.png</uri>
-              <size>129 129 1.8</size>
+              <size>117 117 1.8</size><!--117 117-->
               <pos>0 0 0</pos>
             </heightmap>
           </geometry>

@@ -719,7 +719,8 @@ void ArduCopterPlugin::ReceiveMotorCommand()
 
     if (!this->dataPtr->arduCopterOnline)
     {
-      gzdbg << "ArduCopter controller online detected.\n";
+      gzmsg << "Plugin connected to ArduCopter controller.\n";
+
       // made connection, set some flags
       this->dataPtr->connectionTimeoutCount = 0;
       this->dataPtr->arduCopterOnline = true;
