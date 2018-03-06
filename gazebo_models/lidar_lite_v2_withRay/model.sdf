@@ -27,7 +27,6 @@
 
       <sensor name="rangefinder_sensor" type="ray">
         <pose>0.058 0 0 -1.57 0 0</pose>
-	<!--<pose>1 0 0 1.57 0 1.57</pose> -->
         <ray>
           <scan>
             <horizontal>
@@ -48,11 +47,8 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
-	<!--<plugin name="LaserPlugin" filename="libgazebo_lidar_plugin.so">
-	  <robotNamespace></robotNamespace>
-	</plugin>-->
         <always_on>1</always_on>
-        <update_rate>20</update_rate>
+        <update_rate>32</update_rate>
         <visualize>true</visualize>
       </sensor>
     </link>
